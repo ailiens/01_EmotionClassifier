@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #e0e0e0, #f0f0f0);
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 400px;
+            height: 300px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+        .login-form {
+            width: 80%;
+            padding: 20px;
+        }
+        .login-form h2 {
+            margin-bottom: 20px;
+        }
+        .login-form input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 5px 0; /* 아이디와 비밀번호 박스 사이 간격 좁힘 */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-form button {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(to bottom, #96a6a9, #96a6a9); /* 그라데이션 색상 적용 */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 5px 0; /* 아이디와 비밀번호 박스 사이 간격 좁힘 */
+            cursor: pointer;
+            transition: background 0.3s ease; /* 배경색 변화 애니메이션 추가 */
+        }
+        .login-form button:hover {
+            background: linear-gradient(to bottom, #96a6a9, #96a6a9); /* 호버 상태에서의 그라데이션 색상 변화 */
+        }
+        .join-link {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .error-msg {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-form">
+            <h2>로그인</h2>
+            <form method="post" action="login">
+                {% csrf_token %}
+                <input type="text" name="userid" placeholder="아이디">
+                <input type="password" name="passwd" placeholder="비밀번호">
+                <button type="submit">로그인</button>
+            </form>
+            <a href="join" class="join-link">회원가입</a>
+            <div class="error-msg">{{msg}}</div>
+        </div>
+    </div>
+</body>

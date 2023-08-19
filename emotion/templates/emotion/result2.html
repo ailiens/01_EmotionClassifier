@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<!--    <link rel="stylesheet" href="center.css">-->
+    <style>
+        .container2{
+            position: absolute;
+            left: 0px;
+            right: 0;
+            top: 250px;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;}
+    </style>
+</head>
+<body>
+    <div class="container2">
+        <br>
+        <table border="0">
+        {% for item in items %}
+            <tr>
+                <td width="50%" bgcolor="white">{{item.query}}</td>
+                {% if item.predict == "['중립']" %}
+                <td width="50%" bgcolor="yellow">😐{{item.predict}}</td>
+                {% elif item.predict == "['불안']" %}
+                <td width="50%" bgcolor="DodgerBlue">😯{{item.predict}}</td>
+                {% elif item.predict == "['분노']" %}
+                <td width="50%" bgcolor="red">🤬{{item.predict}}</td>
+                {% elif item.predict == "['놀람']" %}
+                <td width="50%" bgcolor="orange">😲{{item.predict}}</td>
+                {% elif item.predict == "['상처']" %}
+                <td width="50%" bgcolor="SlateBlue">😥{{item.predict}}</td>
+                {% elif item.predict == "['당황']" %}
+                <td width="50%" bgcolor="LightGray">😵{{item.predict}}</td>
+                {% elif item.predict == "['기쁨']" %}
+                <td width="50%" bgcolor="LavenderBlush">🙂 {{item.predict}}</td>
+                {% elif item.predict == "['행복']" %}
+                <td width="50%" bgcolor="Salmon">😊 {{item.predict}}</td>
+                {% elif item.predict == "['혐오']" %}
+                <td width="50%" bgcolor="OrangeRed">😈 {{item.predict}}</td>
+                {% elif item.predict == "['공포']" %}
+                <td width="50%" bgcolor="gray">😨 {{item.predict}}</td>
+                {% elif item.predict == "['슬픔']" %}
+                <td width="50%" bgcolor="blue">😭 {{item.predict}}</td>
+                {% else %}
+                <td width="50%" bgcolor="white">{{item.predict}}</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+        </table>
+</div>
+</body>
+</html>
+

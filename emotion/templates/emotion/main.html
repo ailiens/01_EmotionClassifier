@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>main</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, #e0e0e0, #f0f0f0);
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px gray;
+            background-color: rgba(220, 220, 220, 0.9);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            width: 500px;
+            text-align: center;
+        }
+        .links {
+            display: flex;
+            flex-wrap: wrap; /* 열 개수를 넘어가면 다음 줄로 넘어감 */
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px; /* 링크들과의 간격 조정 */
+        }
+        .links a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #96a6a9;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .links a:hover {
+            background-color: #a8e7e7;
+        }
+        .test {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="test">👉{{request.session.userid}}님👈</h2>
+        <div class="links">
+            <a href="emotion_test">감정 테스트</a>
+            <a href="logout">로그아웃</a>
+            <a href="/">HOME</a>
+        </div>
+    </div>
+</body>
+</html>
+<!-- <h2>{{request.session.name}}</h2> -->
+
+
+

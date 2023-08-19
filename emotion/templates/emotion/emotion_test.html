@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>😁Emotion_Tester</title>
+    <script src="http://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 100px;
+        }
+        .input-group {
+            display: flex;
+            align-items: center; /* 입력창과 버튼을 수평 정렬 */
+            margin-bottom: 10px;
+        }
+        .input-group input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            flex-grow: 1; /* 입력창이 남은 공간을 모두 차지하도록 설정 */
+        }
+        .input-group input[type="button"] {
+            padding: 10px;
+            background: linear-gradient(to bottom, #96a6a9, #96a6a9);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .input-group input[type="button"]:hover {
+            background: linear-gradient(to bottom, #96a6a9, #a8e7e7);
+        }
+        .result-box {
+            display: none;
+            margin-top: 20px;
+            max-height: 400px; /* 결과 박스 최대 높이 지정 */
+            overflow-y: auto; /* 스크롤 생성 */
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #f5f5f5;
+        }
+        .result-box div {
+            margin: 5px 0;
+            white-space: nowrap; /* 결과가 한 줄로 나오도록 설정 */
+            overflow: hidden;
+            text-overflow: ellipsis; /* 긴 결과를 생략 부호로 표시 */
+        }
+    </style>
+    <script>
+        $(function(){
+            let isFirst = true; // 처음 결과를 추가할 때는 <div> 태그를 열지 않음
+            $("#button1").click(function(){
+                const q = $("#question").val();
+                console.log('q:', q);
+                $.ajax({
+                    url: '/query',
+                    data: 'question=' + q,
+                    success: function(txt){
+                        console.log(txt);
+                        $(".result-box").show();
+                        if (txt !== "") {
+                            if (isFirst) {
+                                $("#result").html('<div>' + txt + '</div>'); // 처음 결과를 추가할 때는 <div> 태그를 열고 닫음
+                                isFirst = false;
+                            } else {
+                                $("#result").find("div").first().replaceWith('<div>' + txt + '</div>'); // 기존 결과 제거 후 새로운 결과 추가
+                            }
+                        }
+                        $("#question").val('');
+                    }
+                });
+            });
+        });
+        function delete_chat(){
+            if(confirm('모든 내용을 삭제하시겠습니까?')){
+                location.href = 'delete_chat';
+            }
+        }
+    </script>
+</head>
+<body>
+  <div class="container">
+    <h2>당신의 감정을 테스트 해드림</h2>
+    <div class="input-group">
+        <input type="text" id="question" placeholder="문장을 입력하세요">
+        <input type="button" id="button1" value="확인">
+        <input type="button" onclick="delete_chat()" value="삭제">
+    </div>
+    <div class="result-box">
+        <div id="result"></div>
+    </div>
+      <a href="/">Home</a>
+  </div>
+</body>
+</html>
